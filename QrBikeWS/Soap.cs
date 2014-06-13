@@ -57,9 +57,9 @@ namespace QrBikeWS
 		}
 		
 		[WebMethod(EnableSession=true)]
-		public string insertVio(string sfbh, string lrr, string lrdz, string wgxw)
+		public string insertVio(string sfbh, string jlsj, string jlr, string jldz, string wgxw)
 		{
-			return dbhelper.insertVio(sfbh,lrr,lrdz,wgxw);
+			return dbhelper.insertVio(sfbh,jlsj,jlr,jldz,wgxw);
 		}
 	}
 }

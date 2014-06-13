@@ -23,7 +23,7 @@ namespace QrBikeWS
 		private string _dorm;
 		private string _color;
 		private string _areas;
-		private char _state;
+		private string _state;
 		public Bike()
 		{
 		}
@@ -58,7 +58,7 @@ namespace QrBikeWS
 			get{return _areas;}
 			set{this._areas=value;}
 		}		
-		public char state
+		public string state
 		{
 			get{return _state;}
 			set{this._state=value;}

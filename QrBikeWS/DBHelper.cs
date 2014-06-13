@@ -56,7 +56,8 @@ namespace QrBikeWS
 			Bike bike = new Bike();
 			try 
 			{
-				string sql="select id,name,phone,dorm,color,areas,state from bike where id="+id;
+				string sql="select id,name,phone,dorm,color,areas,state" +
+				" from bike where id=" + id;
 				SqlCommand cmd=new SqlCommand(sql,sqlCon);
 				SqlParameter para=new SqlParameter(id,SqlDbType.VarChar);
 				para.Value="%"+id+"%";
@@ -73,30 +74,31 @@ namespace QrBikeWS
 						bike.dorm=(string)reader.GetValue(3);
 						bike.color=(string)reader.GetValue(4);
 						bike.areas=(string)reader.GetValue(5);
-						bike.state=(char)reader.GetValue(6);
+						bike.state=(string)reader.GetValue(6);
 					}
 				}
 				reader.Close();
 				cmd.Dispose();
-			}catch(Exception e){}
+			}catch(Exception){}
 			return bike;
 		}
 		
 		//insert bike.Violation
-		public string insertVio(string sfbh, string lrr, string lrdz, string wgxw)
+		public string insertVio(string sfbh, string jlsj, string jlr, string jldz, string wgxw)
 		{
 			try
 			{
-				string sql="insert into Violation(sfbh,lrr,lrdz,wgxw) values('" + sfbh + "','" + lrr + "','" + lrdz + "','" + wgxw + "')";
-//				string sql="insert into Violation(sfbh,lrr,lrdz,wgxw) values('20111003511','yudongxi','library','shoaid')";
+			
+				string sql="insert into Violation(sfbh,jlsj,jlr,jldz,wgxw) values('" + sfbh + "','" + DateTime.Parse(jlsj) + "','" + jlr + "','" + jldz + "','" + wgxw + "')";
+
 				SqlCommand cmd=new SqlCommand(sql,sqlCon);
 				if(cmd.ExecuteNonQuery()!=0)
 				{
-					return "Successfully.";
+					return "成功录入.";
 				}
 				cmd.Dispose();
-			}catch(Exception e){}
-			return "Failed.";
+			}catch(Exception e){ return e.ToString();}
+			return "录入失败.";
 		}
 	}
 }
